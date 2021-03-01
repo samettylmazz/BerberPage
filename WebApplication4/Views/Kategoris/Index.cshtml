@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebApplication4.Models.Kategori>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var item in Model)
+{
+
+    <div class="row">
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="@("~/image/"+item.ImageName)" asp-append-version="true" width="320px" height="150px" />
+                <div class="caption">
+                    <h4>
+                        @Html.DisplayFor(modelItem => item.Fiyat)
+                    </h4>
+                    <h4>
+                        <a href="#">  @Html.DisplayFor(modelItem => item.Baslik)</a>
+                    </h4>
+
+                    <p> @Html.DisplayFor(modelItem => item.Detay)</p>
+
+                   
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Randevums" asp-action="Create">Randevu</a>
+                   
+                </div>
+                <div>
+                    <hr />
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">
+                        <button class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-comment"></span>Yorumlar
+                        </button>
+                    </p>
+                    <p>
+                        <button class="btn btn-default btn-sm" type="button">
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        </button>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+

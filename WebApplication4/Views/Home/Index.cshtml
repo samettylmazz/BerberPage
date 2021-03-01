@@ -1,0 +1,45 @@
+﻿
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+        .ToList();
+}
+
+<label>Language:</label>
+<select onchange="SetCulture(this.value)" asp-for="@requestCulture.RequestCulture.UICulture.Name" asp-items="cultureItems">
+</select>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div asp-validation-summary="All" class="text-danger"></div>
+@{
+    string culture = "", uiculture = "";
+    if (Context.Request.QueryString.HasValue)
+    {
+        string url = Context.Request.QueryString.Value;
+        culture = Context.Request.Query["culture"];
+        uiculture = Context.Request.Query["ui-culture"];
+    }
+}
+
+<h2>@Localizer["Randevu"]</h2>
+
+
+<script>
+    function SetCulture(selectedValue) {
+        alert(selectedValue);
+        var url = window.location.href.split('?')[0];
+        var culture = "?culture=" + selectedValue + "&ui-culture=" + selectedValue;
+        window.location.href = url + culture;
+    }
+</script>

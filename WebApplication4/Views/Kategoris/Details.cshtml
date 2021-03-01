@@ -1,0 +1,48 @@
+﻿@model WebApplication4.Models.Kategori
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Kategori</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Baslik)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Baslik)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Detay)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Detay)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fiyat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fiyat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ImageName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.KategoriId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
